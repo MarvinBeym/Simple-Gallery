@@ -168,9 +168,6 @@ class PhotoFragment : ViewPagerFragment() {
 
         if (mMedium.path.startsWith("content://") && !mMedium.path.startsWith("content://mms/")) {
             mMedium.path = context!!.getRealPathFromURI(Uri.parse(mOriginalPath)) ?: mMedium.path
-            if (isRPlus() && mMedium.path.startsWith("/storage/") && mMedium.isHidden()) {
-                mMedium.path = mOriginalPath
-            }
 
             if (mMedium.path.isEmpty()) {
                 var out: FileOutputStream? = null
