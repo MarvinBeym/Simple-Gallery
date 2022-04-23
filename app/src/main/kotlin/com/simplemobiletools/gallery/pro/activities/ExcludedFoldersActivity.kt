@@ -24,16 +24,10 @@ class ExcludedFoldersActivity : SimpleActivity(), RefreshRecyclerViewListener {
     private fun updateFolders() {
         val folders = ArrayList<String>()
         config.excludedFolders.mapTo(folders) { it }
-        var placeholderText = getString(R.string.excluded_activity_placeholder)
         manage_folders_placeholder.apply {
+            text = getString(R.string.excluded_activity_placeholder)
             beVisibleIf(folders.isEmpty())
-            setTextColor(getProperTextColor())
-
-            if (isRPlus()) {
-                placeholderText = placeholderText.substringBefore("\n")
-            }
-
-            text = placeholderText
+            setTextColor(config.textColor)
         }
 
         val adapter = ManageFoldersAdapter(this, folders, true, this, manage_folders_list) {}
